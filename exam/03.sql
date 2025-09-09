@@ -1,0 +1,26 @@
+-- 03. 부서별 급여 합계 구합니다.(group by dno)
+-- 위에서 구한 부서별 급여합계를 모두 더한 총합도 구합니다.
+-- 파이프라인 형제 집계를 사용하세요
+-- POST /dept/_search
+-- {
+--   "size": 0,
+--   "aggs": {
+--     "gdno": {
+--       "terms": {
+--         "field": "dno"
+--       },
+--       "aggs": {
+--         "mdno": {
+--           "sum": {
+--             "field": "salary"
+--           }
+--         }
+--       }
+--     },
+--       "total_sum":{
+--         "sum_bucket":{
+--           "buckets_path":"gdno>mdno"
+--         }
+--       }
+--     }
+--   }
